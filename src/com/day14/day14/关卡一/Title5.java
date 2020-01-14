@@ -1,0 +1,26 @@
+package com.day14.day14.关卡一;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+
+public class Title5 {
+    public static void main(String[] args) {
+        Map<String,String> map=new HashMap<>();
+        //"邓超"->"孙俪", "李晨"->"范冰冰", "刘德华"->"柳岩", “黄晓明”->” Baby”,“谢霆锋”->”张柏 芝”
+        map.put("邓超","孙俪");
+        map.put("李晨","范冰冰");
+        map.put("刘德华","柳岩");
+        map.put("黄晓明","Bady");
+        map.put("谢霆锋","张柏芝");
+        Set<Map.Entry<String,String>> set=map.entrySet();
+        Iterator<Map.Entry<String,String>> it=set.iterator();
+        while(it.hasNext()){
+            Map.Entry<String,String> entry=it.next();
+            String key=entry.getKey();
+            String value=entry.getValue();
+            System.out.println(key+"--->"+value);
+        }
+    }
+}

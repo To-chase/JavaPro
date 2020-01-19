@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class ServerTcp {
     public static void main(String[] args) throws Exception {
@@ -16,20 +17,30 @@ public class ServerTcp {
          */
         //1
         System.out.println("服务端启动，等待连接");
-        ServerSocket server = new ServerSocket(6666);
-        //获取连接 accept
-        Socket socket = server.accept();
-        //获取输入流
-        InputStream is = socket.getInputStream();
-        byte[] b = new byte[1024];
-        int len=is.read(b);
-        String meg=new String(b,0,len);
-        System.out.println(meg);
-        OutputStream os=socket.getOutputStream();
-        os.write("我很好，你呢？".getBytes());
+        ServerSocket server = new ServerSocket(8888);
+        InputStream is=null;
+        OutputStream os=null;
+        while(true){
+            Scanner sc=new Scanner(System.in);
+            //获取连接 accept
+            Socket socket = server.accept();
+            //获取输入流
+            is = socket.getInputStream();
+            byte[] b = new byte[1024];
+            int len;
+//        while ((len = is.read(b)) != -1) {
+            len=is.read(b);
+            String meg = new String(b, 0, len);
+            System.out.println("客户端发来消息:" + meg);
+//        }
+            os = socket.getOutputStream();
+            System.out.println("服务端回消息:");
+            os.write(sc.next().getBytes());
 //        System.out.println("==============================");
-        os.close();
-        is.close();
-        server.close();
+            os.close();
+            is.close();
+            socket.close();
+        }
+
     }
 }

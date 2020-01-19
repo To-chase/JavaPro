@@ -27,7 +27,6 @@ public class Client {
         System.out.println(new String(bytes,0,lens));
         is.close();
         bis.close();
-        bos.close();
         socket.close();
     }
 }
